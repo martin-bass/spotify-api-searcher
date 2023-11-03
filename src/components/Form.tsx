@@ -22,9 +22,6 @@ import AlbumContainer from "../views/AlbumContainer";
 //Components
 import RelatedArtistList from "./RelatedArtistList";
 
-//Types
-import { Albums } from "../types/types";
-
 //Enviroment Variables
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const SECRET_CLIENT = import.meta.env.VITE_SECRET_CLIENT;
@@ -34,7 +31,7 @@ function Form() {
   const [accessToken, setAccessToken] = useState<string>("");
   const [artistID, setArtistID] = useState<string>("");
   const [artistName, setArtistName] = useState<string>("");
-  const [albums, setAlbums] = useState<Albums[]>([]);
+
 
   //Modal
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -83,28 +80,6 @@ function Form() {
       }
     }
   }
-
-  // Realizar la solicitud de álbumes cuando artistID cambie
-  useEffect(() => {
-    if (artistID) {
-      // Obtener álbumes del artista
-      const albumParameters: AxiosRequestConfig = {
-        method: "GET",
-        url: `https://api.spotify.com/v1/artists/${artistID}/albums?album_type=album&limit=50`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
-      axios(albumParameters)
-        .then((response) => {
-          setAlbums(response.data.items);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [artistID, accessToken]);
 
   return (
     <VStack bgColor={"#1A1A1A"} width={"full"} p={6}>
@@ -159,7 +134,9 @@ function Form() {
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
-                <ModalHeader color={"white"} fontSize={32}>Related Artist</ModalHeader>
+                <ModalHeader color={"white"} fontSize={32}>
+                  Related Artist
+                </ModalHeader>
                 <ModalCloseButton color={"white"} />
                 <ModalBody>
                   <RelatedArtistList
@@ -175,7 +152,10 @@ function Form() {
           )}
         </HStack>
       )}
-      <AlbumContainer albums={albums} accessToken={accessToken} />
+      <AlbumContainer
+        accessToken={accessToken}
+        artistID={artistID}
+      />
     </VStack>
   );
 }

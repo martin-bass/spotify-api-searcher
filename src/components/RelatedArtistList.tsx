@@ -27,7 +27,7 @@ function RelatedArtistList({
   onClose,
 }: Props) {
   const [relatedArtist, setrelatedArtist] = useState<RelatedArtist[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   //Obtener artistas relacionados
   useEffect(() => {
@@ -57,8 +57,6 @@ function RelatedArtistList({
     await setArtistName(name);
     onClose();
   }
-
-  console.log(relatedArtist);
 
   return (
     <Stack>

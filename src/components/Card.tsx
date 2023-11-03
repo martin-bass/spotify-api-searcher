@@ -13,18 +13,19 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
+  Spinner,
 } from "@chakra-ui/react";
 
 //Styles
 import "../styles/Card.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //Types
 import { Albums } from "../types/types";
 
 //Components
-import AlbumTracks from './AlbumTracks'
+import AlbumTracks from "./AlbumTracks";
 
 type Props = {
   album: Albums;
@@ -34,13 +35,24 @@ type Props = {
 function ArtistCard({ album, accessToken }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [openModal, _setOpenModal] = useState(true);
+  const [albumsLoading, setAlbumsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (album) {
+      setAlbumsLoading(true);
+    }
+  }, [album, accessToken]);
 
   return (
     <Stack>
       <Card className="card-container" m={"auto"} p={2}>
         <CardBody className="card">
           <Stack className="img-content">
-            <Image src={album.images[1].url} alt="" />
+            {!albumsLoading ? (
+              <Spinner size={"lg"} />
+            ) : (
+              <Image src={album.images[1].url} alt="Image" />
+            )}
           </Stack>
           <VStack className="content" color={"blackAlpha.800"}>
             <Text className="heading">{album.name}</Text>
