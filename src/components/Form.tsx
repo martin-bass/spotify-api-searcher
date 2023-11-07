@@ -132,14 +132,14 @@ function Form() {
             variant={"outline"}
             onClick={onOpen}
           >
-            Related Artist
+            Related Artists
           </Button>
           {openModal && (
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
                 <ModalHeader color={"white"} fontSize={32}>
-                  Related Artist
+                  Related Artists
                 </ModalHeader>
                 <ModalCloseButton color={"white"} />
                 <ModalBody>
