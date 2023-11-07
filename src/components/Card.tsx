@@ -54,7 +54,11 @@ function ArtistCard({ album, accessToken }: Props) {
               <Image src={album.images[1].url} alt="Image" />
             )}
           </Stack>
-          <VStack className="content" color={"blackAlpha.800"}>
+          <VStack
+            className="content"
+            color={"white"}
+            textShadow={"black 0.1em 0.1em 0.2em"}
+          >
             <Text className="heading">{album.name}</Text>
             <Text textAlign={"left"} w={"full"} fontWeight={"black"}>
               Year:{" "}

@@ -13,6 +13,7 @@ import {
   Button,
   Link,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 
 //Axios
@@ -35,6 +36,7 @@ function AlbumTRacks({
   OpenInSpotify,
 }: Props) {
   const [tracks, setTracks] = useState<Album[]>([]);
+  const [loadingTracks, setLoadingTracks] = useState<boolean>(false);
 
   useEffect(() => {
     const getTracks = (albumChoiseID: string) => {
@@ -48,7 +50,8 @@ function AlbumTRacks({
       };
       axios(albumParameters)
         .then((response) => {
-          setTracks(response.data.items); // Actualiza el estado con los tracks
+          setTracks(response.data.items);
+          setLoadingTracks(true); // Actualiza el estado con los tracks
         })
         .catch((error) => {
           console.error(error);
@@ -66,53 +69,60 @@ function AlbumTRacks({
 
   return (
     <VStack>
-      <HStack spacing={12} display={"flex"} alignItems={"start"} mb={8}>
-        <Box w={"full"} mt={10}>
-          <Image src={AlbumCoverImg} boxSize={"md"} rounded={5} />
-        </Box>
-        <Stack w={"full"}>
-          <TableContainer>
-            <Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th
-                    fontSize={"medium"}
-                    color={"green.400"}
-                    textAlign={"center"}
-                  >
-                    Track
-                  </Th>
-                  <Th fontSize={"medium"} color={"green.400"}>
-                    Song
-                  </Th>
-                  <Th
-                    fontSize={"medium"}
-                    color={"green.400"}
-                    textAlign={"center"}
-                  >
-                    Duration
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody color={"white"}>
-                {tracks.map((track) => (
-                  <Tr key={track.id} fontSize={"small"}>
-                    <Td py={2} textAlign={"center"} pl={0}>
-                      {track.track_number}
-                    </Td>
-                    <Td py={2}>{track.name}</Td>
-                    <Td py={2} textAlign={"center"}>
-                      {milisegundosAMinutosSegundos(track.duration_ms)}
-                    </Td>
+      {!loadingTracks ? (
+        <Spinner color={"white"} m={12} />
+      ) : (
+        <HStack spacing={12} display={"flex"} alignItems={"start"} mb={8}>
+          <Box w={"full"} mt={10}>
+            <Image src={AlbumCoverImg} boxSize={"md"} rounded={5} />
+          </Box>
+          <Stack w={"full"}>
+            <TableContainer>
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th
+                      fontSize={"medium"}
+                      color={"green.400"}
+                      textAlign={"center"}
+                    >
+                      Track
+                    </Th>
+                    <Th fontSize={"medium"} color={"green.400"}>
+                      Song
+                    </Th>
+                    <Th
+                      fontSize={"medium"}
+                      color={"green.400"}
+                      textAlign={"center"}
+                    >
+                      Duration
+                    </Th>
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Stack>
-      </HStack>
+                </Thead>
+                <Tbody color={"white"}>
+                  {tracks.map((track) => (
+                    <Tr key={track.id} fontSize={"small"}>
+                      <Td py={2} textAlign={"center"}>
+                        {track.track_number}
+                      </Td>
+                      <Td py={2}>{track.name}</Td>
+                      <Td py={2} textAlign={"center"}>
+                        {milisegundosAMinutosSegundos(track.duration_ms)}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Stack>
+        </HStack>
+      )}
+
       <Link href={OpenInSpotify} isExternal>
-        <Button colorScheme="green">Play in Spotify</Button>
+        <Button colorScheme="green" mb={4}>
+          Play in Spotify
+        </Button>
       </Link>
     </VStack>
   );

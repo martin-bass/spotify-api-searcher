@@ -4,6 +4,7 @@ import { ChakraProvider, Container, Text } from "@chakra-ui/react";
 //Components
 import Form from "./components/Form";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           Discover the discography of your favorite artists
         </Text>
         <Form />
+        <Footer />
       </Container>
     </ChakraProvider>
   );

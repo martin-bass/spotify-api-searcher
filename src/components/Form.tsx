@@ -32,7 +32,6 @@ function Form() {
   const [artistID, setArtistID] = useState<string>("");
   const [artistName, setArtistName] = useState<string>("");
 
-
   //Modal
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [openModal, _setOpenModal] = useState(true);
@@ -98,6 +97,11 @@ function Form() {
           color={"white"}
           required
           value={searchInput}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              search(e);
+            }
+          }}
         />
       </FormControl>
       <Button
@@ -152,10 +156,7 @@ function Form() {
           )}
         </HStack>
       )}
-      <AlbumContainer
-        accessToken={accessToken}
-        artistID={artistID}
-      />
+      <AlbumContainer accessToken={accessToken} artistID={artistID} />
     </VStack>
   );
 }

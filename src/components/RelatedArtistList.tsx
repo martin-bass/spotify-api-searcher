@@ -2,10 +2,10 @@ import {
   Grid,
   GridItem,
   Stack,
-  Text,
   Image,
   Button,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import { RelatedArtist } from "../types/types";
 import axios, { AxiosRequestConfig } from "axios";
@@ -61,7 +61,7 @@ function RelatedArtistList({
   return (
     <Stack>
       {!loading ? (
-        <Text color={"white"}>Loading...</Text>
+        <Spinner color={"white"} m={"auto"} p={8} />
       ) : (
         <Grid
           p={4}
