@@ -38,7 +38,7 @@ function AlbumContainer({ accessToken, artistID }: Props) {
 
   return (
     <Stack w={"full"}>
-      {albums.length === 0 ? (
+      {artistID && albums.length === 0 ? (
         <Stack p={18} minH={"100vh"} width={"full"} color={"white"} textAlign={'center'} >
           <Text  fontSize={48} fontWeight={'medium'}>Ooops!</Text>
           <Text >It seems that there is no official discography for this artist...</Text>
