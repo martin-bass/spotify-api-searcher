@@ -1,4 +1,4 @@
-import { Grid, GridItem, Stack } from "@chakra-ui/react";
+import { Grid, GridItem, Stack, Text } from "@chakra-ui/react";
 import ArtistCard from "../components/Card";
 import { Albums } from "../types/types";
 import { useEffect, useState } from "react";
@@ -34,21 +34,30 @@ function AlbumContainer({ accessToken, artistID }: Props) {
     }
   }, [artistID, accessToken]);
 
+  console.log(albums);
+
   return (
     <Stack w={"full"}>
-      <Grid
-        p={4}
-        minH={"100vh"}
-        width={"full"}
-        templateColumns="repeat(3, 1fr)"
-        gap={12}
-      >
-        {albums.map((album) => (
-          <GridItem key={album.id}>
-            <ArtistCard album={album} accessToken={accessToken} />
-          </GridItem>
-        ))}
-      </Grid>
+      {albums.length === 0 ? (
+        <Stack p={18} minH={"100vh"} width={"full"} color={"white"} textAlign={'center'} >
+          <Text  fontSize={48} fontWeight={'medium'}>Ooops!</Text>
+          <Text >It seems that there is no official discography for this artist...</Text>
+        </Stack>
+      ) : (
+        <Grid
+          p={4}
+          minH={"100vh"}
+          width={"full"}
+          templateColumns="repeat(3, 1fr)"
+          gap={12}
+        >
+          {albums.map((album) => (
+            <GridItem key={album.id}>
+              <ArtistCard album={album} accessToken={accessToken} />
+            </GridItem>
+          ))}
+        </Grid>
+      )}
     </Stack>
   );
 }
