@@ -11,6 +11,7 @@ type Props = {
 
 function AlbumContainer({ accessToken, artistID }: Props) {
   const [albums, setAlbums] = useState<Albums[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Realizar la solicitud de álbumes cuando artistID cambie
   useEffect(() => {
@@ -26,7 +27,12 @@ function AlbumContainer({ accessToken, artistID }: Props) {
       };
       axios(albumParameters)
         .then((response) => {
-          setAlbums(response.data.items);
+          if (response.data.items.length > 0) {
+            setAlbums(response.data.items);
+            setLoading(false);
+          } else {
+            setLoading(true);
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -34,14 +40,23 @@ function AlbumContainer({ accessToken, artistID }: Props) {
     }
   }, [artistID, accessToken]);
 
-  console.log(albums);
-
   return (
-    <Stack w={"full"}>
-      {artistID && albums.length === 0 ? (
-        <Stack p={18} minH={"100vh"} width={"full"} color={"white"} textAlign={'center'} >
-          <Text  fontSize={48} fontWeight={'medium'}>Ooops!</Text>
-          <Text >It seems that there is no official discography for this artist...</Text>
+    <Stack w={"full"} mt={12}>
+      {artistID && <Text fontSize={48} fontWeight={'bold'} ml={20}>Albums</Text>}
+      {loading ? (
+        <Stack
+          p={18}
+          minH={"100vh"}
+          width={"full"}
+          color={"white"}
+          textAlign={"center"}
+        >
+          <Text fontSize={48} fontWeight={"medium"}>
+            Ooops!
+          </Text>
+          <Text>
+            It seems that there is no official discography for this artist...
+          </Text>
         </Stack>
       ) : (
         <Grid

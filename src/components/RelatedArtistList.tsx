@@ -15,7 +15,6 @@ type Props = {
   accessToken: string;
   artistID: string;
   setArtistID: any;
-  setArtistName: any;
   onClose: () => void | any;
 };
 
@@ -23,7 +22,6 @@ function RelatedArtistList({
   accessToken,
   artistID,
   setArtistID,
-  setArtistName,
   onClose,
 }: Props) {
   const [relatedArtist, setrelatedArtist] = useState<RelatedArtist[]>([]);
@@ -52,9 +50,8 @@ function RelatedArtistList({
     }
   }, [artistID, accessToken]);
 
-  async function searchRelatedArtist(id: string, name: string) {
+  async function searchRelatedArtist(id: string) {
     await setArtistID(id);
-    await setArtistName(name);
     onClose();
   }
 
@@ -80,7 +77,7 @@ function RelatedArtistList({
               />
               <Box display={"flex"} justifyContent={"center"}>
                 <Button
-                  onClick={() => searchRelatedArtist(artist.id, artist.name)}
+                  onClick={() => searchRelatedArtist(artist.id)}
                   variant={"unstyled"}
                   color={"white"}
                   alignSelf={"center"}

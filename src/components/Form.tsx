@@ -7,20 +7,14 @@ import {
   Input,
   Button,
   VStack,
-  Text,
-  HStack,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
-import AlbumContainer from "../views/AlbumContainer";
 
 //Components
-import RelatedArtistList from "./RelatedArtistList";
+import ArtistCard from "./ArtistCard";
+import AlbumContainer from "../views/AlbumContainer";
+
+//types
+import { ArtistSelected } from "../types/types";
 
 //Enviroment Variables
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
@@ -30,11 +24,7 @@ function Form() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [accessToken, setAccessToken] = useState<string>("");
   const [artistID, setArtistID] = useState<string>("");
-  const [artistName, setArtistName] = useState<string>("");
-
-  //Modal
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [openModal, _setOpenModal] = useState(true);
+  const [artistInfo, setArtistInfo] = useState<ArtistSelected>();
 
   // Obtener el token de acceso de la API de Spotify
   useEffect(() => {
@@ -72,13 +62,33 @@ function Form() {
         e.preventDefault();
         const artistIDFound = await axios(artistParameters);
         setArtistID(artistIDFound.data.artists.items[0].id);
-        setArtistName(artistIDFound.data.artists.items[0].name);
         setSearchInput("");
       } catch (error) {
         console.error(error);
       }
     }
   }
+
+  //Obtener datos del artista
+  useEffect(() => {
+    if (artistID) {
+      const albumParameters: AxiosRequestConfig = {
+        method: "GET",
+        url: `https://api.spotify.com/v1/artists/${artistID}`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      axios(albumParameters)
+        .then((response) => {
+          setArtistInfo(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [artistID, accessToken]);
 
   return (
     <VStack bgColor={"#1A1A1A"} width={"full"} p={6}>
@@ -113,48 +123,13 @@ function Form() {
       >
         Search
       </Button>
-      {artistName && (
-        <HStack
-          width={"full"}
-          px={20}
-          display={"flex"}
-          justifyContent={"space-between"}
-        >
-          <Text color={"white"} fontSize={36} fontWeight={"semibold"}>
-            Artist:{" "}
-            <Text as={"span"} fontWeight={"light"}>
-              {artistName}
-            </Text>
-          </Text>
-          <Button
-            colorScheme={"whatsapp"}
-            size={"md"}
-            variant={"outline"}
-            onClick={onOpen}
-          >
-            Related Artists
-          </Button>
-          {openModal && (
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
-                <ModalHeader color={"white"} fontSize={32}>
-                  Related Artists
-                </ModalHeader>
-                <ModalCloseButton color={"white"} />
-                <ModalBody>
-                  <RelatedArtistList
-                    artistID={artistID}
-                    accessToken={accessToken}
-                    setArtistID={setArtistID}
-                    setArtistName={setArtistName}
-                    onClose={onClose}
-                  />
-                </ModalBody>
-              </ModalContent>
-            </Modal>
-          )}
-        </HStack>
+      {artistInfo && (
+        <ArtistCard
+          artistInfo={artistInfo}
+          artistID={artistID}
+          accessToken={accessToken}
+          setArtistID={setArtistID}
+        />
       )}
       <AlbumContainer accessToken={accessToken} artistID={artistID} />
     </VStack>
