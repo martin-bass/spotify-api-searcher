@@ -45,7 +45,7 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
       mt={12}
     >
       <VStack w={"full"} width={"full"} px={2}>
-        <VStack w={"full"}>
+        <VStack w={"full"} color={'white'}>
           <Text fontSize={"48"} fontWeight={"semibold"} mb={5}>
             {artistInfo.name}
           </Text>

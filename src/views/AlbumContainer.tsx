@@ -42,7 +42,11 @@ function AlbumContainer({ accessToken, artistID }: Props) {
 
   return (
     <Stack w={"full"} mt={12}>
-      {artistID && <Text fontSize={48} fontWeight={'bold'} ml={20}>Albums</Text>}
+      {artistID && (
+        <Text fontSize={48} fontWeight={"bold"} ml={20} color={"white"}>
+          Albums
+        </Text>
+      )}
       {loading ? (
         <Stack
           p={18}
