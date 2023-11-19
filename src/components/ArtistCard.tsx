@@ -14,6 +14,7 @@ import {
   HStack,
   VStack,
   Link,
+  Box,
 } from "@chakra-ui/react";
 
 //Components
@@ -44,12 +45,12 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
       rounded={5}
       mt={12}
     >
-      <VStack w={"full"} width={"full"} px={2}>
+      <VStack w={"full"} width={"full"} p={2}>
         <VStack w={"full"} color={'white'}>
-          <Text fontSize={"48"} fontWeight={"semibold"} mb={5}>
+          <Text fontSize={'4xl'} fontWeight={"semibold"} mb={5} lineHeight={'normal'}>
             {artistInfo.name}
           </Text>
-          <VStack w={"full"} alignItems={"start"} spacing={5}>
+          <VStack w={"full"} alignItems={"start"} spacing={4} fontSize={14}>
             <Text fontWeight={"bold"}>
               {" "}
               Total Followers:{" "}
@@ -100,12 +101,14 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
           )}
         </VStack>
       </VStack>
+      <Box >
       <Image
         src={artistInfo.images[0].url}
-        boxSize={80}
+        //boxSize={'fit-content'}
         fit={"cover"}
         roundedRight={5}
       />
+      </Box>
     </HStack>
   );
 }

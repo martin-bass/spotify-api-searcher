@@ -42,11 +42,6 @@ function AlbumContainer({ accessToken, artistID }: Props) {
 
   return (
     <Stack w={"full"} mt={12}>
-      {artistID && (
-        <Text fontSize={48} fontWeight={"bold"} ml={20} color={"white"}>
-          Albums
-        </Text>
-      )}
       {loading ? (
         <Stack
           p={18}
@@ -63,19 +58,26 @@ function AlbumContainer({ accessToken, artistID }: Props) {
           </Text>
         </Stack>
       ) : (
-        <Grid
-          p={4}
-          minH={"100vh"}
-          width={"full"}
-          templateColumns="repeat(3, 1fr)"
-          gap={12}
-        >
-          {albums.map((album) => (
-            <GridItem key={album.id}>
-              <ArtistCard album={album} accessToken={accessToken} />
-            </GridItem>
-          ))}
-        </Grid>
+        <Stack w={"full"}>
+          {artistID && (
+            <Text fontSize={48} fontWeight={"bold"} ml={20} color={"white"}>
+              Albums
+            </Text>
+          )}
+          <Grid
+            p={4}
+            minH={"100vh"}
+            width={"full"}
+            templateColumns="repeat(3, 1fr)"
+            gap={12}
+          >
+            {albums.map((album) => (
+              <GridItem key={album.id}>
+                <ArtistCard album={album} accessToken={accessToken} />
+              </GridItem>
+            ))}
+          </Grid>
+        </Stack>
       )}
     </Stack>
   );
