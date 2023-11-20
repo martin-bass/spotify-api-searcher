@@ -61,10 +61,16 @@ function RelatedArtistList({
         <Spinner color={"white"} m={"auto"} p={8} />
       ) : (
         <Grid
+
           p={4}
           minH={"100vh"}
           width={"full"}
-          templateColumns="repeat(5, 1fr)"
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(4, 1fr)",
+            lg: "repeat(5, 1fr)",
+          }}
           gap={8}
         >
           {relatedArtist.map((artist: RelatedArtist) => (

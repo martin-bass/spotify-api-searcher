@@ -1,5 +1,5 @@
 import "./App.css";
-import { ChakraProvider, Container, Text } from "@chakra-ui/react";
+import { ChakraProvider, Container } from "@chakra-ui/react";
 
 //Components
 import Form from "./components/Form";
@@ -15,13 +15,9 @@ function App() {
         centerContent
         overflowX="hidden"
         maxW={"100%"}
-        //w={'full'}
         p={0}
       >
         <Header />
-        <Text color={"white"}>
-          Discover the discography of your favorite artists
-        </Text>
         <Form />
         <Footer />
       </Container>

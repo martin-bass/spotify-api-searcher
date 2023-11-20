@@ -11,10 +11,10 @@ import {
   Text,
   Image,
   useDisclosure,
-  HStack,
   VStack,
   Link,
   Box,
+  Stack,
 } from "@chakra-ui/react";
 
 //Components
@@ -36,12 +36,13 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
   const [openModal, _setOpenModal] = useState(true);
 
   return (
-    <HStack
+    <Stack
       bgColor={"black"}
-      w={"800px"}
+      w={{base:'300px',sm:'480px',md:"800px"}}
       justifyContent={"space-between"}
       rounded={5}
       mt={12}
+      direction={{base:'column-reverse',md:'row'}}
     >
       <VStack w={"full"} p={2}>
         <VStack w={"full"} color={"white"}>
@@ -92,7 +93,7 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
           {openModal && (
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
-              <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
+              <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"} mx={4}>
                 <ModalHeader color={"white"} fontSize={32}>
                   Related Artists
                 </ModalHeader>
@@ -113,7 +114,7 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
       <Box>
         <Image src={artistInfo.images[0].url} fit={"cover"} roundedRight={5} />
       </Box>
-    </HStack>
+    </Stack>
   );
 }
 

@@ -1,4 +1,4 @@
-import { Stack, Image, Text, Link } from "@chakra-ui/react";
+import { Stack, Image, Text, Link, VStack } from "@chakra-ui/react";
 
 //Logo
 import Logo from "../assets/logoSpotify.png";
@@ -15,9 +15,18 @@ function Header() {
         spacing={4}
       >
         <Image src={Logo} boxSize={10} />
-        <Text color={"white"} fontSize={36} fontWeight={"bold"}>
-          Spotify Album Explorer
-        </Text>
+        <VStack>
+          <Text
+            color={"white"}
+            fontSize={{ base: 24, sm: 36 }}
+            fontWeight={"bold"}
+          >
+            Spotify Album Explorer
+          </Text>
+          <Text color={"white"} fontSize={{ base: 12, sm: 16 }}>
+            Discover the discography of your favorite artists
+          </Text>
+        </VStack>
       </Stack>
     </Link>
   );

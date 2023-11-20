@@ -1,6 +1,5 @@
 import {
   Image,
-  HStack,
   Stack,
   Table,
   TableContainer,
@@ -72,37 +71,41 @@ function AlbumTRacks({
       {!loadingTracks ? (
         <Spinner color={"white"} m={12} />
       ) : (
-        <HStack spacing={12} display={"flex"} alignItems={"start"} mb={8}>
+        <Stack
+          spacing={12}
+          display={"flex"}
+          alignItems={"start"}
+          mb={8}
+          direction={{ base: "column", md: "row" }}
+        >
           <Box w={"full"} mt={10}>
-            <Image src={AlbumCoverImg} boxSize={"md"} rounded={5} />
+            <Image
+              src={AlbumCoverImg}
+              boxSize={{ base: "300px", sm: "400px", md: "500px" }}
+              rounded={5}
+              m={"auto"}
+            />
           </Box>
-          <Stack w={"full"}>
+          <Stack w={{ base: "340px", md: "auto" }}>
             <TableContainer>
-              <Table variant="simple">
+              <Table>
                 <Thead>
-                  <Tr>
-                    <Th
-                      fontSize={"medium"}
-                      color={"green.400"}
-                      textAlign={"center"}
-                    >
+                  <Tr fontSize={{ base: "smaller", sm: "small" }}>
+                    <Th color={"green.400"} textAlign={"center"}>
                       Track
                     </Th>
-                    <Th fontSize={"medium"} color={"green.400"}>
-                      Song
-                    </Th>
-                    <Th
-                      fontSize={"medium"}
-                      color={"green.400"}
-                      textAlign={"center"}
-                    >
+                    <Th color={"green.400"}>Song</Th>
+                    <Th color={"green.400"} textAlign={"center"}>
                       Duration
                     </Th>
                   </Tr>
                 </Thead>
                 <Tbody color={"white"}>
                   {tracks.map((track) => (
-                    <Tr key={track.id} fontSize={"small"}>
+                    <Tr
+                      key={track.id}
+                      fontSize={{ base: "smaller", sm: "small" }}
+                    >
                       <Td py={2} textAlign={"center"}>
                         {track.track_number}
                       </Td>
@@ -116,7 +119,7 @@ function AlbumTRacks({
               </Table>
             </TableContainer>
           </Stack>
-        </HStack>
+        </Stack>
       )}
 
       <Link href={OpenInSpotify} isExternal>

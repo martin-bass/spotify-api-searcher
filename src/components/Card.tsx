@@ -88,8 +88,8 @@ function ArtistCard({ album, accessToken }: Props) {
         {openModal && (
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
-              <ModalHeader color={"white"}>
+            <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"} >
+              <ModalHeader color={"white"} fontSize={{ base: 14, lg: 24 }}>
                 {album.name}{" "}
                 <Text as={"span"}>({album.release_date.substr(0, 4)})</Text>
               </ModalHeader>
