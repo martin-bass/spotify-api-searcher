@@ -45,7 +45,6 @@ export enum ReleaseDatePrecision {
   Year = "year",
 }
 
-
 //Single Album
 export interface Album {
   artists: Artist[];
@@ -67,19 +66,19 @@ export interface Album {
 //Related Artist
 export interface RelatedArtist {
   external_urls: ExternalUrls;
-  followers:     Followers;
-  genres:        string[];
-  href:          string;
-  id:            string;
-  images:        Image[];
-  name:          string;
-  popularity:    number;
-  type:          string;
-  uri:           string;
+  followers: Followers;
+  genres: string[];
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  popularity: number;
+  type: string;
+  uri: string;
 }
 
 export interface Followers {
-  href:  null;
+  href: null;
   total: number;
 }
 
@@ -87,18 +86,13 @@ export interface Followers {
 
 export interface ArtistSelected {
   external_urls: ExternalUrls;
-  followers:     Followers;
-  genres:        string[];
-  href:          string;
-  id:            string;
-  images:        Image[];
-  name:          string;
-  popularity:    number;
-  type:          string;
-  uri:           string;
+  followers: Followers;
+  genres: string[];
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  popularity: number;
+  type: string;
+  uri: string;
 }
-
-
-
-
-

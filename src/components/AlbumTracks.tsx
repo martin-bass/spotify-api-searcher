@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   Image,
   Stack,
@@ -17,7 +19,8 @@ import {
 
 //Axios
 import axios, { AxiosRequestConfig } from "axios";
-import { useEffect, useState } from "react";
+
+//Types
 import { Album } from "../types/types";
 
 type Props = {

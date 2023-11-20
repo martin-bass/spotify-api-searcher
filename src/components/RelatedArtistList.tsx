@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import {
   Grid,
   GridItem,
@@ -7,9 +9,12 @@ import {
   Box,
   Spinner,
 } from "@chakra-ui/react";
+
+//Types
 import { RelatedArtist } from "../types/types";
+
+//Axios
 import axios, { AxiosRequestConfig } from "axios";
-import { useState, useEffect } from "react";
 
 type Props = {
   accessToken: string;
@@ -61,7 +66,6 @@ function RelatedArtistList({
         <Spinner color={"white"} m={"auto"} p={8} />
       ) : (
         <Grid
-
           p={4}
           minH={"100vh"}
           width={"full"}

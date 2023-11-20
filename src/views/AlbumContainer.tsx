@@ -1,7 +1,14 @@
-import { Grid, GridItem, Stack, Text } from "@chakra-ui/react";
-import ArtistCard from "../components/Card";
-import { Albums } from "../types/types";
 import { useEffect, useState } from "react";
+
+import { Grid, GridItem, Stack, Text } from "@chakra-ui/react";
+
+//Components
+import ArtistCard from "../components/Card";
+
+//Types
+import { Albums } from "../types/types";
+
+//Axios
 import axios, { AxiosRequestConfig } from "axios";
 
 type Props = {
@@ -64,8 +71,7 @@ function AlbumContainer({ accessToken, artistID }: Props) {
             minH={"100vh"}
             width={"full"}
             templateColumns={{
-              base: "repeat(1, 1fr)",
-              sm: "repeat(2, 1fr)",
+              sm: "repeat(1, 1fr)",
               md: "repeat(3, 1fr)",
             }}
             gap={12}

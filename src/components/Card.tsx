@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   Image,
   Card,
@@ -18,8 +20,6 @@ import {
 
 //Styles
 import "../styles/Card.css";
-
-import { useEffect, useState } from "react";
 
 //Types
 import { Albums } from "../types/types";
@@ -88,7 +88,7 @@ function ArtistCard({ album, accessToken }: Props) {
         {openModal && (
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"} >
+            <ModalContent minW={"fit-content"} bgColor={"#1A1A1A"}>
               <ModalHeader color={"white"} fontSize={{ base: 14, lg: 24 }}>
                 {album.name}{" "}
                 <Text as={"span"}>({album.release_date.substr(0, 4)})</Text>

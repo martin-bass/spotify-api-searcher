@@ -38,11 +38,11 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
   return (
     <Stack
       bgColor={"black"}
-      w={{base:'300px',sm:'480px',md:"800px"}}
+      w={{ base: "300px", sm: "480px", md: "800px" }}
       justifyContent={"space-between"}
       rounded={5}
       mt={12}
-      direction={{base:'column-reverse',md:'row'}}
+      direction={{ base: "column-reverse", md: "row" }}
     >
       <VStack w={"full"} p={2}>
         <VStack w={"full"} color={"white"}>
@@ -112,7 +112,13 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
         </VStack>
       </VStack>
       <Box>
-        <Image src={artistInfo.images[0].url} fit={"cover"} roundedRight={5} />
+        <Image
+          src={artistInfo.images[0].url}
+          fit={"cover"}
+          roundedBottomRight={{ base: 0, md: 5 }}
+          roundedTopRight={5}
+          roundedTopLeft={{ base: 5, md: 0 }}
+        />
       </Box>
     </Stack>
   );
