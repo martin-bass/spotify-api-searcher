@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
 //Chakra UI
-import { FormControl, Input, Button, VStack, Spinner } from "@chakra-ui/react";
+import { FormControl, Input, Button, VStack } from "@chakra-ui/react";
 
 //Components
 import ArtistCard from "./ArtistCard";
