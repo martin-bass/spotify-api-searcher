@@ -54,7 +54,13 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
           >
             {artistInfo.name}
           </Text>
-          <VStack w={"full"} alignItems={"start"} spacing={4} fontSize={14}>
+          <VStack
+            w={"full"}
+            alignItems={"start"}
+            spacing={4}
+            fontSize={14}
+            height={"170px"}
+          >
             <Text fontWeight={"bold"}>
               {" "}
               Total Followers:{" "}
