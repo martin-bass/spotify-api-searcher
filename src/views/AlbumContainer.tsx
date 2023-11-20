@@ -59,11 +59,6 @@ function AlbumContainer({ accessToken, artistID }: Props) {
         </Stack>
       ) : (
         <Stack w={"full"}>
-          {artistID && (
-            <Text fontSize={48} fontWeight={"bold"} ml={20} color={"white"}>
-              Albums
-            </Text>
-          )}
           <Grid
             p={4}
             minH={"100vh"}

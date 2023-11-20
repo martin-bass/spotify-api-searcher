@@ -35,8 +35,6 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [openModal, _setOpenModal] = useState(true);
 
-  console.log(artistInfo);
-
   return (
     <HStack
       bgColor={"black"}
@@ -45,9 +43,14 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
       rounded={5}
       mt={12}
     >
-      <VStack w={"full"} width={"full"} p={2}>
-        <VStack w={"full"} color={'white'}>
-          <Text fontSize={'4xl'} fontWeight={"semibold"} mb={5} lineHeight={'normal'}>
+      <VStack w={"full"} p={2}>
+        <VStack w={"full"} color={"white"}>
+          <Text
+            fontSize={"4xl"}
+            fontWeight={"semibold"}
+            mb={5}
+            lineHeight={"normal"}
+          >
             {artistInfo.name}
           </Text>
           <VStack w={"full"} alignItems={"start"} spacing={4} fontSize={14}>
@@ -55,20 +58,26 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
               {" "}
               Total Followers:{" "}
               <Text as={"span"} fontWeight={"normal"}>
-                {artistInfo.followers.total.toLocaleString('es-ES', { style: 'decimal' })}
+                {artistInfo.followers.total.toLocaleString("es-ES", {
+                  style: "decimal",
+                })}
               </Text>
             </Text>
             <Text fontWeight={"bold"}>
               {" "}
               Genres:{" "}
-              {artistInfo.genres.map((genere) => (
+              {artistInfo.genres.map((genere: string) => (
                 <Text key={genere} as={"span"} fontWeight={"normal"}>
-                  {genere} - {' '}
+                  {genere} -{" "}
                 </Text>
               ))}
             </Text>
-            <Link href={artistInfo.uri} style={{ textDecoration: "none" }} _hover={{color:'#9AE6B4'}}>
-              <Text fontWeight={"black"} >Play in Spotify</Text>
+            <Link
+              href={artistInfo.uri}
+              style={{ textDecoration: "none" }}
+              _hover={{ color: "#9AE6B4" }}
+            >
+              <Text fontWeight={"black"}>Play in Spotify</Text>
             </Link>
           </VStack>
           <Button
@@ -76,7 +85,7 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
             size={"md"}
             variant={"outline"}
             onClick={onOpen}
-            mt={5}        
+            mt={5}
           >
             Related Artists
           </Button>
@@ -101,13 +110,8 @@ function ArtistCard({ artistInfo, accessToken, artistID, setArtistID }: Props) {
           )}
         </VStack>
       </VStack>
-      <Box >
-      <Image
-        src={artistInfo.images[0].url}
-        //boxSize={'fit-content'}
-        fit={"cover"}
-        roundedRight={5}
-      />
+      <Box>
+        <Image src={artistInfo.images[0].url} fit={"cover"} roundedRight={5} />
       </Box>
     </HStack>
   );
