@@ -79,7 +79,7 @@ function AlbumTRacks({
           display={"flex"}
           alignItems={"start"}
           mb={8}
-          direction={{ base: "column", md: "row" }}
+          direction={{ base: "column", lg: "row" }}
         >
           <Box w={"full"} mt={10}>
             <Image

@@ -23,7 +23,7 @@ function Header() {
           >
             Spotify Album Explorer
           </Text>
-          <Text color={"white"} fontSize={{ base: 12, sm: 16 }}>
+          <Text color={"white"} fontSize={{ base: 12, sm: 16 }} mb={3}>
             Discover the discography of your favorite artists
           </Text>
         </VStack>
