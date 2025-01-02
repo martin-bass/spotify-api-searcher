@@ -41,7 +41,7 @@ export default function Footer() {
             </Tooltip>
           </Link>
           <Link
-            href="https://www.linkedin.com/in/martinariellopez22187139/"
+            href="https://www.linkedin.com/in/martinariellopez/"
             isExternal
           >
             <Tooltip label="Linkedin" bg="gray.300" color="black">

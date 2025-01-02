@@ -26,7 +26,7 @@ function AlbumContainer({ accessToken, artistID }: Props) {
       // Obtener álbumes del artista
       const albumParameters: AxiosRequestConfig = {
         method: "GET",
-        url: `https://api.spotify.com/v1/artists/${artistID}/albums?album_type=album&limit=50`,
+        url: `https://api.spotify.com/v1/artists/${artistID}/albums?include_groups=album&limit=50`,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
@@ -46,6 +46,7 @@ function AlbumContainer({ accessToken, artistID }: Props) {
         });
     }
   }, [artistID, accessToken]);
+
 
   return (
     <Stack w={"full"} mt={12}>
